@@ -1,11 +1,13 @@
 import cv2
 import numpy as np
 
+
 img = cv2.imread('doge.jpg')
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-sharp_filter = np.array([[0,-1,0],[-1,5,-1],[0,-1,0]])
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) #I don't know how to process an image with RGB channels
+sharp_filter = np.array([[0,-1,0],[-1,5,-1],[0,-1,0]]) #kernel can be changed any other matrix (e.g. blur, detect edges, etc.)
 final = np.zeros(shape=(len(gray),len(gray[0])))
 
+#iterates through every pixel, generates a temporary 3x3 matrix and applies the convolution
 for i in range(len(gray)):
     for j in range(len(gray[i])):
         if (i == 0):
@@ -53,9 +55,10 @@ for i in range(len(gray)):
                     for b in range(3):
                         temp[a,b] = gray[i+a-1,j+b-1]
         prod = temp*sharp_filter
-        final[i,j]=np.sum(prod)/254.5
+        #needs to divide by 254.5 to achieve the right brightness
+        final[i,j]=np.sum(prod)/254.5 #additionally, divide by the number required by the desired filter (e.g. divide by 9 for average filter)
         
-
+#press q to close images
 while(True):
     cv2.imshow('original',gray)
     cv2.imshow('final', final)
