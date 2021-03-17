@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 
-img = cv2.imread('doge.jpg')
+img = cv2.imread('hadtodoittoem.png')
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) #I don't know how to process an image with RGB channels
 sharp_filter = np.array([[0,-1,0],[-1,5,-1],[0,-1,0]]) #kernel can be changed any other matrix (e.g. blur, detect edges, etc.)
 final = np.zeros(shape=(len(gray),len(gray[0])))
@@ -14,7 +14,7 @@ for i in range(len(gray)):
         if (i == 0):
             if (j == 0):
                 temp = np.array([[gray[0,0],gray[0,0],gray[0,1]],[gray[0,0],gray[0,0],gray[0,1]],[gray[1,0],gray[1,0],gray[1,1]]])
-            elif (j == len(gray)-1):
+            elif (j == len(gray[0])-1):
                 temp = np.array([[gray[0,j-1],gray[0,j],gray[0,j]],
                 [gray[0,j-1],gray[0,j],gray[0,j]],
                 [gray[1,j-1],gray[1,j],gray[1,j]]])
@@ -28,7 +28,7 @@ for i in range(len(gray)):
         elif (i == len(gray)-1):
             if (j == 0):
                 temp = np.array([[gray[i-1,0],gray[i-1,0],gray[i-1,1]],[gray[i,0],gray[i,0],gray[i,1]],[gray[i,0],gray[i,0],gray[i,1]]])
-            elif (j == len(gray)-1):
+            elif (j == len(gray[0])-1):
                 temp = np.array([[gray[i-1,j-1],gray[i-1,j],gray[i-1,j]],[gray[i,j-1],gray[i,j],gray[i,j]],[gray[i,j-1],gray[i,j],gray[i,j]]])
             else:
                 temp = np.zeros(shape=(3,3))
@@ -44,7 +44,7 @@ for i in range(len(gray)):
                     temp[a,0] = gray[i+a-1,j]
                     for b in range(1,3):
                         temp[a,b] = gray[i+a-1,j+b-1]
-            elif (j == len(gray)-1):
+            elif (j == len(gray[0])-1):
                 temp = np.zeros(shape=(3,3))
                 for a in range(3):
                     for b in range(1,2):
