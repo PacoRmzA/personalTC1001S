@@ -8,6 +8,7 @@ sharp_filter = np.array([[0,-1,0],[-1,5,-1],[0,-1,0]]) #kernel can be changed an
 final = np.zeros(shape=(len(gray),len(gray[0])))
 
 #iterates through every pixel, generates a temporary 3x3 matrix and applies the convolution
+#if-else clauses necessary for extend-type padding
 for i in range(len(gray)):
     for j in range(len(gray[i])):
         if (i == 0):
