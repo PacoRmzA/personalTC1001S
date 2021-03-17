@@ -31,7 +31,7 @@ for i in range(len(gray)):
                 temp = np.zeros(shape=(3,3))
                 for a in range(len(gray)-2,len(gray)):
                     for b in range(3):
-                        temp[a+2,b] = gray[a,j+b-1]
+                        temp[a-len(gray)+2,b] = gray[a,j+b-1]
                 for b in range(3):
                     temp[2,b] = gray[i,j+b-1]
         else:
@@ -53,9 +53,8 @@ for i in range(len(gray)):
                     for b in range(3):
                         temp[a,b] = gray[i+a-1,j+b-1]
         prod = temp*sharp_filter
-        final[i,j]=np.sum(prod)
+        final[i,j]=np.sum(prod)/254.5
         
-
 
 while(True):
     cv2.imshow('original',gray)
