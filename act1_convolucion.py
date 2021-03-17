@@ -56,8 +56,8 @@ for i in range(len(gray)):
                     for b in range(3):
                         temp[a,b] = gray[i+a-1,j+b-1]
         prod = temp*sharp_filter
-        #needs to divide by 254.5 to achieve the right brightness
-        final[i,j]=np.sum(prod)/254.5 #additionally, divide by the number required by the desired filter (e.g. divide by 9 for average filter)
+        #needs to divide by 255 to achieve the right brightness by normalizing its level
+        final[i,j]=np.sum(prod)/255 #additionally, divide by the number required by the desired filter (e.g. divide by 9 for average filter)
         
 #press q to close images
 while(True):
