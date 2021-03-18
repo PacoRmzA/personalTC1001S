@@ -6,7 +6,7 @@ img = cv2.imread('hadtodoittoem.png')
 sharp_filter = np.array([[0,-1,0],[-1,5,-1],[0,-1,0]]) #kernel can be changed any other matrix (e.g. blur, detect edges, etc.)
 final = np.zeros(shape=(len(img),len(img[0]),3))
 
-#iterates through every pixel, generates a temporary 3x3 matrix and applies the convolution
+#iterates through every pixel (i,j) and every color channel c, generates a temporary 3x3 matrix and applies the convolution
 #if-else clauses necessary for extend-type padding
 for c in range(3):
     for i in range(len(img)):
